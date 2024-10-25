@@ -1,64 +1,98 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, FlatList } from 'react-native';
+import React from 'react';
+import { View, Text, Image, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
 
-import { styles } from '../styles/styles';
-
+// importando o estilo da patina "styles.ts"
+import { styles } from '../styles/styles'; // Para exportação nomeada sem "defaut" - usa { styles }
+//importar o componente
+import Tarefas  from '../components/Tarefas/index';
 
 export default function HomeScreen() {
-  // Estado para os participantes
-  const [participants, setParticipants] = useState<string[]>(['Bruno Valú']);
-  const [newParticipant, setNewParticipant] = useState(''); // Para o TextInput
+  //useState para limitar a quantidade de caracteres no input
+  const [textContent, setTextContent] = useState<string>('');
 
-  // Função para adicionar participante
-  function handParticipantAdd() {
-    if (participants.includes(newParticipant)) {
-      return Alert.alert('Já existe esse participante', 'Já existe um participante na lista com esse nome');
+  const [ useTarefas, setTarefas ] = useState(['Estudar para a prova']);
+
+  // Função para limitar a quantidade de caracteres no input
+  const handleTextChange = (text: string) => {
+    if (text.length > 40) {
+      setTextContent(text.substring(0, 40)); // Limita a 40 caracteres
+    } else {
+      setTextContent(text); // Caso contrário, atualiza normalmente
     }
-
-    setParticipants([...participants, newParticipant]); // Adiciona o novo participante ao estado
-    setNewParticipant(''); // Limpa o TextInput
   }
 
-  // Função para remover participante
-  function handParticipantRemove(name: string) {
-    Alert.alert('Remover', `Remover o participante ${name}?`, [
-      {
-        text: 'Sim',
-        onPress: () => {
-          setParticipants(prevState => prevState.filter(participant => participant !== name)); // Remove o participante do estado
-          //Alert.alert('Deletado!');
-        },
-      },
-      {
-        text: 'Não',
-        style: 'cancel',
-      },
-    ]);
+  function handletarefasAdd() {
+    if (Tarefas.includes('Estudar para a prova')) {
+      return Alert.alert('Essa Tarefa já existe', 'Por favor adicione outra' )
+    }
   }
+
+
 
   return (
     <View style={styles.container}>
-      <Text style={styles.eventName}>Nome do Evento</Text>
-      <Text style={styles.eventDate}>Quarta, 23 de Outubro de 2024</Text>
-
+      
+      
+      
       <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Digite um nome..."
-          placeholderTextColor={'#7f7f7f'}
-          value={newParticipant} // Vinculado ao estado
-          onChangeText={setNewParticipant} // Atualiza o estado ao digitar
+        <TextInput style={styles.input}
+            placeholder='Digite uma tarefa aqui...'
+            placeholderTextColor={'#808080'}
+            value={textContent} // Controla o valor do input
+            onChangeText={handleTextChange} // Limita os caracteres no input
         />
 
-        <TouchableOpacity style={styles.button} onPress={handParticipantAdd}>
-          <Ionicons style={styles.iconadd} name="add" size={32} color="#fff" />
+        <TouchableOpacity style={styles.button}>
+            <Ionicons name="add" size={32} color="#fff" />
         </TouchableOpacity>
       </View>
 
+      <View style={styles.backgroundTop}>
+        <Image style={styles.logo}  source={require('../../assets/JobList.png')} />
+      </View>
+        
+      <View style={styles.contagem}>
+      <View style={styles.criadasContainer}>
+            <Text style={styles.criadas}>
+                Criadas
+            </Text>
+
+            <View style={styles.caixaCriadas}>
+                <Text style={styles.numeroCriadas}>
+                    0
+                </Text>
+            </View>
+        </View>
+        
+        <View style={styles.concluidasContainer}>
+            <Text style={styles.concluidas}>
+                Concluídas
+            </Text>
+
+            <View style={styles.caixaConcluidas}>
+                <Text style={styles.numeroConcluidas}>
+                    0
+                </Text>
+            </View>
+        </View>
+      </View>  
       
 
+      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula"/>
       
-     </View>
+      
+      
+    </View>
   );
 }
+
+
+
