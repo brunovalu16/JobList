@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 662.26 735.25">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Gradiente_sem_nome_5-2);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#Gradiente_sem_nome_5-3);
+      }
+
+      .cls-7 {
+        fill: #606060;
+        font-family: MontserratAlternates-SemiBold, 'Montserrat Alternates';
+        font-size: 185.92px;
+        font-weight: 600;
+        letter-spacing: -.08em;
+      }
+
+      .cls-3 {
+        fill: url(#Gradiente_sem_nome_7-2);
+      }
+
+      .cls-4 {
+        fill: url(#Gradiente_sem_nome_7);
+      }
+
+      .cls-5 {
+        fill: url(#Gradiente_sem_nome_9);
+      }
+
+      .cls-6 {
+        fill: url(#Gradiente_sem_nome_5);
+      }
+    </style>
+    <linearGradient id="Gradiente_sem_nome_5" data-name="Gradiente sem nome 5" x1="79.4" y1="240.65" x2="662.26" y2="240.65" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4ea8de"/>
+      <stop offset=".65" stop-color="#5e60ce"/>
+      <stop offset="1" stop-color="#4c3d7d"/>
+    </linearGradient>
+    <linearGradient id="Gradiente_sem_nome_7" data-name="Gradiente sem nome 7" x1="321.77" y1="161.11" x2="362.53" y2="215.66" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4ea8de"/>
+      <stop offset="1" stop-color="#2e3192" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="Gradiente_sem_nome_5-2" data-name="Gradiente sem nome 5" x1="79.13" y1="214.99" x2="386.57" y2="214.99" xlink:href="#Gradiente_sem_nome_5"/>
+    <linearGradient id="Gradiente_sem_nome_7-2" data-name="Gradiente sem nome 7" x1="121.39" y1="101.7" x2="181.37" y2="144.26" xlink:href="#Gradiente_sem_nome_7"/>
+    <linearGradient id="Gradiente_sem_nome_5-3" data-name="Gradiente sem nome 5" x1="137.62" y1="344.41" x2="560.26" y2="344.41" xlink:href="#Gradiente_sem_nome_5"/>
+    <linearGradient id="Gradiente_sem_nome_9" data-name="Gradiente sem nome 9" x1="503.52" y1="433.56" x2="461.1" y2="385.04" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#473c77"/>
+      <stop offset="1" stop-color="#2e3192" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <g>
+        <g>
+          <path class="cls-6" d="m79.4,481.3S280.75,100.54,524.9,1.47c0,0,60.91-10.2,137.37,23.21,0,0-82.64,112.37-103.03,134.57-31.88,25.41-56.43,43.16-135.76,87.64-225.21,126.28-344.07,234.42-344.07,234.42Z"/>
+          <path class="cls-4" d="m137.62,399.88C255.5,240.65,464.07,15.87,594.62,41.06"/>
+        </g>
+        <g>
+          <path class="cls-1" d="m79.4,425.73S208.31,93.67,386.57,6.12c0,0-228.61-15.48-270.77,42.74-42.16,58.22-36.4,376.86-36.4,376.86Z"/>
+          <path class="cls-3" d="m105.96,288.86c3.43-40.25,6.85-80.5,10.28-120.75,2.72-31.99,6-65.59,24.17-92.06,14.76-21.51,38.08-35.98,62.67-44.68,24.6-8.69,50.69-12.12,76.56-15.5"/>
+        </g>
+        <g>
+          <path class="cls-2" d="m137.62,481.52s346.6-137.57,421.63-276.92c0,0,9.45,216.79-29.58,244.66-68.35,48.81-392.05,32.26-392.05,32.26Z"/>
+          <path class="cls-5" d="m540.34,303.71c-4.16,31.14-8.32,62.28-12.48,93.42-1.17,8.73-2.48,17.84-7.59,25.01-6.55,9.19-17.95,13.35-28.73,16.67-37.05,11.43-75.27,19.07-113.86,22.78"/>
+        </g>
+      </g>
+      <text class="cls-7" transform="translate(2.41 685.98)"><tspan x="0" y="0">JobList</tspan></text>
+    </g>
+  </g>
+</svg>
