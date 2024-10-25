@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
       paddingLeft: 10,
       paddingTop: 15,
       paddingBottom: 15,
-      fontSize: 10,
+      fontSize: 15,
       borderRadius: 5,
       color: '#808080',
       flex: 1, // Permite que o input ocupe o espaço disponível

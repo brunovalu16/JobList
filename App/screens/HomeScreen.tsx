@@ -10,24 +10,33 @@ import Tarefas  from '../components/Tarefas/index';
 
 export default function HomeScreen() {
   //useState para limitar a quantidade de caracteres no input
-  const [textContent, setTextContent] = useState<string>('');
+  const [tarefas, setNewTarefas] = useState<string[]>(['Bruno Valú']);
+  const [newTarefas, setNewtarefas] = useState('');
 
   const [ useTarefas, setTarefas ] = useState(['Estudar para a prova']);
 
   // Função para limitar a quantidade de caracteres no input
   const handleTextChange = (text: string) => {
     if (text.length > 40) {
-      setTextContent(text.substring(0, 40)); // Limita a 40 caracteres
+      setNewtarefas(text.substring(0, 40)); // Limita a 40 caracteres
     } else {
-      setTextContent(text); // Caso contrário, atualiza normalmente
+      setNewtarefas(text); // Caso contrário, atualiza normalmente
     }
   }
 
   function handletarefasAdd() {
-    if (Tarefas.includes('Estudar para a prova')) {
+    if (tarefas.includes(newTarefas)) {
       return Alert.alert('Essa Tarefa já existe', 'Por favor adicione outra' )
     }
   }
+
+  function handletarefasRemove() {
+    if (tarefas.includes('Estudar para a prova')) {
+      return Alert.alert('Essa Tarefa já existe', 'Por favor adicione outra' )
+    }
+  }
+
+  
 
 
 
@@ -40,8 +49,8 @@ export default function HomeScreen() {
         <TextInput style={styles.input}
             placeholder='Digite uma tarefa aqui...'
             placeholderTextColor={'#808080'}
-            value={textContent} // Controla o valor do input
-            onChangeText={handleTextChange} // Limita os caracteres no input
+            value={newTarefas} // Controla o valor do input
+            onChangeText={setNewtarefas} // Limita os caracteres no input
         />
 
         <TouchableOpacity style={styles.button}>
@@ -80,13 +89,8 @@ export default function HomeScreen() {
       </View>  
       
 
-      <Tarefas name="Estudar para a aula"/>
-      <Tarefas name="Estudar para a aula"/>
-      <Tarefas name="Estudar para a aula"/>
-      <Tarefas name="Estudar para a aula"/>
-      <Tarefas name="Estudar para a aula"/>
-      <Tarefas name="Estudar para a aula"/>
-      <Tarefas name="Estudar para a aula"/>
+      <Tarefas name="Estudar para a aula" onRemove={handletarefasRemove}/>
+      
       
       
       

@@ -7,11 +7,12 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 type Props = {
     name: string;
+    onRemove: () => void;
 }
 
 
 
-export default function Tarefas({ name }: Props) {
+export default function Tarefas({ name, onRemove }: Props) {
     return (
         <View style={styles.container}>
             
@@ -32,7 +33,7 @@ export default function Tarefas({ name }: Props) {
                 /> 
             </View>
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={onRemove}>
                 <Ionicons name="trash-outline" size={25} color="#808080" />
             </TouchableOpacity>
 
