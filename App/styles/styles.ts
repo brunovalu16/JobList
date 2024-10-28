@@ -1,114 +1,139 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#191919',
-      alignItems: 'center',
+        flex: 1,
+        backgroundColor: '#13111c',
+        padding: 24
     },
 
-    backgroundTop: {
-      backgroundColor: '#0D0D0D',
-      width: '100%',
-      height: '30%',
-      position: 'absolute',
-      top: 0,
-      zIndex: -1,
+    eventName: {
+        color: '#31CF67',
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginTop: 16
     },
 
-    logo: {
-      width: 90,
-      height: 90,
-      top: 100,
-      alignSelf: 'center',
-      resizeMode: 'contain',
-    },
-
-    form: {
-      position: 'relative',
-      zIndex: 1,
-      flexDirection: 'row', // Coloca os elementos na mesma linha
-      alignItems: 'center',
-      top: '57%',
-      width: '90%',
+    eventDate: {
+        color: '#6B6B6B',
+        fontSize: 16
     },
 
     input: {
-      backgroundColor: '#262626',
-      paddingLeft: 10,
-      paddingTop: 15,
-      paddingBottom: 15,
-      fontSize: 15,
-      borderRadius: 5,
-      color: '#808080',
-      flex: 1, // Permite que o input ocupe o espaço disponível
-      marginRight: 5,
+        backgroundColor: '#24212b',
+        color: '#7f7f7f',
+        paddingLeft: 10,
+        height: '100%',
+        fontSize: 13,
+        flex: 1,
+        marginRight: 8,
+        borderRadius: 3
     },
+
     button: {
-      backgroundColor: '#4EA8DE',
-      width: 56,
-      height: 56,
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
+        width: 56,
+        height: 56,
+        backgroundColor: '#4EA8DE',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 3,
     },
 
-    contagem: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: '80%',
-      top: '70%',
-      zIndex: 1,
+    buttonText: {
+        color: '#fff',
+        fontSize: 24,
+        
     },
 
-    concluidasContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
+    iconadd: {
+        color: '#fff',
+        
     },
 
-    concluidas: {
-      color: '#8284FA',
-      paddingRight: 10
+    form: {
+        width: '100%',
+        flexDirection: 'row',
+        top: '40%',
+        marginBottom: 15.
     },
 
-    caixaConcluidas: {
-      backgroundColor: '#333333',
-      width: 22,
-      height: 22,
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
+    listEmptyText: {
+        color: '#7f7f7f',
+        fontSize: 14,
+        textAlign: 'center'
     },
 
-    numeroConcluidas: {
-      color: "#fff"
+    flatList: {
+        top: '25%',
+        flex: 1,
     },
 
+    logo: {
+        width: 100,
+        height: 100,
+        top: 100,
+        alignSelf: 'center',
+        resizeMode: 'contain',
+      },
 
-    criadasContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
+      contagem: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        top: '50%',
+        zIndex: 1,
+        marginBottom: 10
+      },
 
-    criadas: {
-      color: '#4EA8DE',
-      paddingRight: 10
-    },
+      criadasContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+  
+      concluidasContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+  
+      concluidas: {
+        color: '#8284FA',
+        paddingRight: 10
+      },
+  
+      caixaConcluidas: {
+        backgroundColor: '#333333',
+        width: 22,
+        height: 22,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+  
+      numeroConcluidas: {
+        color: "#fff"
+      },
+  
+      criadas: {
+        color: '#4EA8DE',
+        paddingRight: 10
+      },
+  
+      caixaCriadas: {
+        backgroundColor: '#333333',
+        width: 22,
+        height: 22,
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+  
+      numeroCriadas: {
+        color: "#fff"
+      },
 
-    caixaCriadas: {
-      backgroundColor: '#333333',
-      width: 22,
-      height: 22,
-      borderRadius: 5,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-
-    numeroCriadas: {
-      color: "#fff"
-    },
+      
 
     
-
    
-  })
+
+});

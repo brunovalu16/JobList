@@ -1,78 +1,100 @@
-import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
-
-// importando o estilo da patina "styles.ts"
-import { styles } from '../styles/styles'; // Para exportação nomeada sem "defaut" - usa { styles }
-//importar o componente
-import Tarefas  from '../components/Tarefas/index';
+import { styles } from '../styles/styles';
+import Participant from '../components/Participant/index';
 
 export default function HomeScreen() {
-  //useState para limitar a quantidade de caracteres no input
-  const [tarefas, setNewTarefas] = useState<string[]>(['Bruno Valú']);
-  const [newTarefas, setNewtarefas] = useState('');
+  // Estado para os participantes
+  const [participants, setParticipants] = useState<string[]>([]); // Inicializa como lista vazia
+  const [newParticipant, setNewParticipant] = useState(''); // Para o TextInput
+  
 
-  const [ useTarefas, setTarefas ] = useState(['Estudar para a prova']);
+ 
 
-  // Função para limitar a quantidade de caracteres no input
-  const handleTextChange = (text: string) => {
-    if (text.length > 40) {
-      setNewtarefas(text.substring(0, 40)); // Limita a 40 caracteres
-    } else {
-      setNewtarefas(text); // Caso contrário, atualiza normalmente
+  // Função para adicionar participante
+  function handParticipantAdd() {
+    if (participants.includes(newParticipant)) {
+      return Alert.alert('Já existe essa tarefa', 'Adicione outra...');
     }
+
+    setParticipants([...participants, newParticipant]); // Adiciona o novo participante ao estado
+    setNewParticipant(''); // Limpa o TextInput
   }
 
-  function handletarefasAdd() {
-    if (tarefas.includes(newTarefas)) {
-      return Alert.alert('Essa Tarefa já existe', 'Por favor adicione outra' )
-    }
-  }
-
-  function handletarefasRemove() {
-    if (tarefas.includes('Estudar para a prova')) {
-      return Alert.alert('Essa Tarefa já existe', 'Por favor adicione outra' )
-    }
+  // Função para remover participante
+  function handParticipantRemove(name: string) {
+    Alert.alert('Remover', `Remover o participante ${name}?`, [
+      {
+        text: 'Sim',
+        onPress: () => {
+          setParticipants(prevState => prevState.filter(participant => participant !== name)); // Remove o participante do estado
+        },
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ]);
   }
 
   
 
-
-
   return (
     <View style={styles.container}>
+
+
+      {/*___________________________LOGOMARCA_________________________*/}
+
+
       
+      <View>
+        <Image style={styles.logo}  source={require('../../assets/JobList.png')} />
+      </View>
+
+      <View>
+        <Text style={styles.eventName}>Tarefas semanais</Text>
+        <Text style={styles.eventDate}>Quarta, 23 de Outubro de 2024</Text>
+      </View>
       
+
+
       
+
+      {/*___________________________INPUT DE ADICIONAR TAREFAS_________________________*/}
+
+
+
       <View style={styles.form}>
-        <TextInput style={styles.input}
-            placeholder='Digite uma tarefa aqui...'
-            placeholderTextColor={'#808080'}
-            value={newTarefas} // Controla o valor do input
-            onChangeText={setNewtarefas} // Limita os caracteres no input
+        <TextInput
+          style={styles.input}
+          placeholder="Digite uma tarefa..."
+          placeholderTextColor={'#7f7f7f'}
+          value={newParticipant} // Vinculado ao estado
+          onChangeText={setNewParticipant} // Atualiza o estado ao digitar
         />
 
-        <TouchableOpacity style={styles.button}>
-            <Ionicons name="add" size={32} color="#fff" />
+        <TouchableOpacity style={styles.button} onPress={handParticipantAdd}>
+          <Ionicons style={styles.iconadd} name="add" size={32} color="#fff" />
         </TouchableOpacity>
       </View>
 
-      <View style={styles.backgroundTop}>
-        <Image style={styles.logo}  source={require('../../assets/JobList.png')} />
-      </View>
-        
-      <View style={styles.contagem}>
-      <View style={styles.criadasContainer}>
-            <Text style={styles.criadas}>
-                Criadas
-            </Text>
 
-            <View style={styles.caixaCriadas}>
-                <Text style={styles.numeroCriadas}>
-                    0
-                </Text>
-            </View>
+      {/*___________________________CRIADAS E CONCLUÍDAS_________________________*/}
+
+
+
+      <View style={styles.contagem}>
+        <View style={styles.criadasContainer}>
+              <Text style={styles.criadas}>
+                  Criadas
+              </Text>
+
+              <View style={styles.caixaCriadas}>
+                  <Text style={styles.numeroCriadas}>
+                      0
+                  </Text>
+              </View>
         </View>
         
         <View style={styles.concluidasContainer}>
@@ -86,17 +108,30 @@ export default function HomeScreen() {
                 </Text>
             </View>
         </View>
-      </View>  
-      
+      </View>
 
-      <Tarefas name="Estudar para a aula" onRemove={handletarefasRemove}/>
-      
-      
-      
-      
+
+      {/*___________________________FLATLIST_________________________*/}
+
+
+
+
+      <View style={styles.flatList}>
+        <FlatList
+          data={participants}
+          keyExtractor={item => item}
+          renderItem={({ item }) => (
+            <Participant
+              key={item}
+              name={item}
+              onRemove={() => handParticipantRemove(item)}
+            />
+          )}
+          ListEmptyComponent={() => (
+            <Text style={styles.listEmptyText}>Adicione participantes do evento.</Text>
+          )}
+        />
+      </View>
     </View>
   );
 }
-
-
-
