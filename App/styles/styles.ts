@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export const styles = StyleSheet.create({
     container: {
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
         color: '#4EA8DE',
         fontSize: 24,
         fontWeight: 'bold',
-        marginTop: 16
+        marginTop: '25%'
     },
 
     eventDate: {
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#24212b',
         color: '#7f7f7f',
         paddingLeft: 10,
-        height: '100%',
+        height: '102%',
         fontSize: 13,
         flex: 1,
         marginRight: 8,
@@ -31,8 +32,8 @@ export const styles = StyleSheet.create({
     },
 
     button: {
-        width: 56,
-        height: 56,
+        width: 35,
+        height: 35,
         backgroundColor: '#4EA8DE',
         alignItems: 'center',
         justifyContent: 'center',
@@ -53,8 +54,8 @@ export const styles = StyleSheet.create({
     form: {
         width: '100%',
         flexDirection: 'row',
-        top: '50%',
-        marginBottom: 15.
+        top: '25%',
+        marginBottom: 15
     },
 
     listEmptyText: {
@@ -64,14 +65,14 @@ export const styles = StyleSheet.create({
     },
 
     flatList: {
-        top: '30%',
+        top: '17%',
         flex: 1,
     },
 
     logo: {
         width: 100,
         height: 100,
-        top: 100,
+        top: 60,
         alignSelf: 'center',
         resizeMode: 'contain',
       },
@@ -80,9 +81,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        top: '60%',
+        top: '30%',
         zIndex: 1,
-        marginBottom: 10
       },
 
       criadasContainer: {
@@ -131,11 +131,40 @@ export const styles = StyleSheet.create({
         color: "#fff",
       },
 
-      titulo:{
-        top: '18%'
-      }
+      
 
-    
+      titulo: {
+        flexDirection: 'row',
+        alignItems: 'center',  // Centraliza verticalmente os itens
+        justifyContent: 'space-between',  // Espaça os itens igualmente na linha
+        top: '15%',
+        marginRight: 20,
+        borderColor: '#4EA8DE',
+        borderWidth: 0.5,
+        padding: 10,
+        width: '100%',
+        borderRadius: 5
+      },
+      buttonToucha: {
+        backgroundColor: '#4EA8DE',
+        padding: 8,
+        borderRadius: 5,
+        alignItems: 'center',
+        marginHorizontal: 5, // Espaçamento entre os botões
+      },
+      buttonTextToucha: {
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: 'bold',
+      },
+      init: {
+        fontSize: 14,
+        marginHorizontal: 5, // Espaçamento entre o texto da data e os botões
+        color: '#fff'
+      },
+      label: {
+        fontSize: 16,
+      },
    
 
 });

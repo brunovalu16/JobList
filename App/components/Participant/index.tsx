@@ -11,11 +11,14 @@ import { styles } from './styles'
 type Props = {
     name: string;
     onRemove: () => void;
-}
+    taskConcluidas: number; // Adiciona taskConcluidas como parte das props
+    setTaskConcluidas: React.Dispatch<React.SetStateAction<number>>; // Adiciona setTaskConcluidas como parte das props
+};
 
 
-export default function Participant({ name, onRemove }: Props) {
 
+export default function Participant({ name, onRemove, taskConcluidas, setTaskConcluidas }: Props) {
+    
     return(
         <View style={styles.container}>
 
@@ -27,9 +30,13 @@ export default function Participant({ name, onRemove }: Props) {
                     fillColor="#5E60CE"
                     iconStyle={{ borderColor: "" }}
                     innerIconStyle={{ borderWidth: 2 }}
-                    onPress={(isChecked: boolean) => {console.log(isChecked)}}
+                    onPress={(isChecked: boolean) => {
+                    console.log(isChecked); // Função de verificação
+                    setTaskConcluidas(prevCount => isChecked ? prevCount + 1 : Math.max(prevCount - 1, 0));
+                    }}
                 /> 
             </View>
+            
 
 
              {/*___________________________PROPRIEDADE QUE RECEBE DADOS_________________________*/}

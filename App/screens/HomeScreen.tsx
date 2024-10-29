@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, FlatList, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, FlatList, Image, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
+
 import { styles } from '../styles/styles';
 import Participant from '../components/Participant/index';
+
 
 export default function HomeScreen() {
   // Estado para os participantes
@@ -10,6 +15,13 @@ export default function HomeScreen() {
   const [newParticipant, setNewParticipant] = useState(''); // Para o TextInput
   const [taskCriadas, setTaskCriadas] = useState(0); // Para o campo "criadas"
   const [newTaskCriadas, setNewTaskCriadas] = useState(0); // Para o campo "criadas"
+  const [taskConcluidas, setTaskConcluidas] = useState(0); // Para o campo "concluidas"
+  const [newtaskConcluidas, setNewTaskConcluidas] = useState(0); // Para o campo "concluidas"
+  // Estado para o calendário
+  const [startDate, setStartDate] = useState<Date | undefined>(undefined);
+  const [endDate, setEndDate] = useState<Date | undefined>(undefined);
+  const [showStartPicker, setShowStartPicker] = useState(false);
+  const [showEndPicker, setShowEndPicker] = useState(false);
  
   
 
@@ -37,6 +49,7 @@ export default function HomeScreen() {
         text: 'Sim',
         onPress: () => {
           setParticipants(prevState => prevState.filter(participant => participant !== name)); // Remove o participante do estado
+          setTaskConcluidas(prevCount => Math.max(prevCount - 1, 0)); // Decrementa Concluídas 
         },
       },
       {
@@ -57,7 +70,7 @@ export default function HomeScreen() {
 
   // FUNÇÃO PARA ATUALIZAR O CAMPO "CRIADAS"
   const handleAddTask = () => {
-        setTaskCriadas(prevCount => prevCount + 1); // Incrementa taskCount como número
+        setTaskCriadas(prevCount => prevCount + 1); // Incrementa {taskCriadas} como número
         setNewTaskCriadas(0); // Limpa o campo de entrada, assumindo que é do tipo number
   };
 
@@ -65,16 +78,29 @@ export default function HomeScreen() {
     
     // Função para resetar o valor de "criadas"
 const handleRemoveTask = () => {
-  setTaskCriadas(prevCount => (prevCount > 0 ? prevCount - 1 : 0)); // Decrementa taskCriadas, mas garante que não fique negativo
+      setTaskCriadas(prevCount => (prevCount > 0 ? prevCount - 1 : 0)); // Decrementa taskCriadas, mas garante que não fique negativo
+};
+
+
+
+// Função para o calendário
+const handleStartDateChange = (event: any, selectedDate?: Date) => {
+  setShowStartPicker(false);
+  if (selectedDate) {
+    setStartDate(selectedDate);
+  }
+};
+
+const handleEndDateChange = (event: any, selectedDate?: Date) => {
+  setShowEndPicker(false);
+  if (selectedDate) {
+    setEndDate(selectedDate);
+  }
 };
   
-  
 
 
 
-
-
- 
 
 
   {/*___________________________FIM FUNÇÕES_________________________*/} 
@@ -100,11 +126,47 @@ const handleRemoveTask = () => {
       {/*___________________________TÍTULO E SUBTÍTULO_________________________*/}
 
 
+      <View>
+        <Text style={styles.eventName}>Seu calendário semanal</Text>
+        <Text style={styles.eventDate}>Organize sua semana criando e concluindo suas tarefas :) </Text>
+      </View>
+
+
+
+      {/*___________________________CALENDÁRIO_________________________*/}
+
+
+
 
       <View style={styles.titulo}>
-        <Text style={styles.eventName}>Tarefas semanais</Text>
-        <Text style={styles.eventDate}>Crie suas tarefas semanis</Text>
-      </View>
+      <Text style={styles.label}></Text>
+      <TouchableOpacity style={styles.buttonToucha} onPress={() => setShowStartPicker(true)}>
+        <Text style={styles.buttonTextToucha}>De:</Text>
+      </TouchableOpacity>
+      {startDate && <Text style={styles.init}>{startDate.toLocaleDateString('pt-BR')}</Text>}
+      {showStartPicker && (
+        <DateTimePicker
+          value={startDate || new Date()}
+          mode="date"
+          display="default"
+          onChange={handleStartDateChange}
+        />
+      )}
+
+      <Text style={styles.label}></Text>
+      <TouchableOpacity style={styles.buttonToucha} onPress={() => setShowEndPicker(true)}>
+        <Text style={styles.buttonTextToucha}>Até:</Text>
+      </TouchableOpacity>
+      {endDate && <Text style={styles.init}>{endDate.toLocaleDateString('pt-BR')}</Text>}
+      {showEndPicker && (
+        <DateTimePicker
+          value={endDate || new Date()}
+          mode="date"
+          display="default"
+          onChange={handleEndDateChange}
+        />
+      )}
+    </View>
       
 
 
@@ -124,7 +186,7 @@ const handleRemoveTask = () => {
         />
 
         <TouchableOpacity style={styles.button} onPress={combinedHandleAdd}>
-          <Ionicons style={styles.iconadd} name="add" size={32} color="#fff" />
+          <Ionicons style={styles.iconadd} name="add" size={30} color="#fff" />
         </TouchableOpacity>
       </View>
 
@@ -153,7 +215,7 @@ const handleRemoveTask = () => {
 
             <View style={styles.caixaConcluidas}>
                 <Text style={styles.numeroConcluidas}>
-                    0
+                    {taskConcluidas}
                 </Text>
             </View>
         </View>
@@ -174,14 +236,17 @@ const handleRemoveTask = () => {
               key={item}
               name={item}
               onRemove={() => {
-                handParticipantRemove(item); // Remove o participante específico da lista
+                handParticipantRemove(item); // Remove a tarefa específica da lista
                 handleRemoveTask(); // Decrementa o contador de tarefas
               }}
+
+                taskConcluidas={taskConcluidas} // Passa taskConcluidas como prop
+                setTaskConcluidas={setTaskConcluidas} // Passa setTaskConcluidas como prop
               
             />
           )}
           ListEmptyComponent={() => (
-            <Text style={styles.listEmptyText}>Adicione suas tarefas... </Text>
+            <Text style={styles.listEmptyText}>Adicione suas tarefas para esse semana... </Text>
           )}
         />
       </View>

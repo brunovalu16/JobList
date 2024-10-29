@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between', // Mantém os elementos nos extremos
-        padding: 10,
+        padding: 3,
         backgroundColor: '#24212b',
         borderRadius: 5,
         marginBottom: 10
