@@ -8,9 +8,17 @@ export default function HomeScreen() {
   // Estado para os participantes
   const [participants, setParticipants] = useState<string[]>([]); // Inicializa como lista vazia
   const [newParticipant, setNewParticipant] = useState(''); // Para o TextInput
+  const [taskCriadas, setTaskCriadas] = useState(0); // Para o campo "criadas"
+  const [newTaskCriadas, setNewTaskCriadas] = useState(0); // Para o campo "criadas"
+ 
   
 
- 
+
+
+    {/*___________________________INÍCIO FUNÇÕES_________________________*/} 
+
+
+
 
   // Função para adicionar participante
   function handParticipantAdd() {
@@ -38,7 +46,43 @@ export default function HomeScreen() {
     ]);
   }
 
+
+
+// FUNÇÃO PARA COMBINAR O CLIQUE DO ADICIONAR TAREFA PARA ADD UMA NOVA TAREFA E ATUALIZAR O CAMPO "CRIADAS"
+  const combinedHandleAdd = () => {
+        handParticipantAdd();
+        handleAddTask();
+        
+  };
+
+  // FUNÇÃO PARA ATUALIZAR O CAMPO "CRIADAS"
+  const handleAddTask = () => {
+        setTaskCriadas(prevCount => prevCount + 1); // Incrementa taskCount como número
+        setNewTaskCriadas(0); // Limpa o campo de entrada, assumindo que é do tipo number
+  };
+
+
+    
+    // Função para resetar o valor de "criadas"
+const handleRemoveTask = () => {
+  setTaskCriadas(prevCount => (prevCount > 0 ? prevCount - 1 : 0)); // Decrementa taskCriadas, mas garante que não fique negativo
+};
   
+  
+
+
+
+
+
+ 
+
+
+  {/*___________________________FIM FUNÇÕES_________________________*/} 
+
+  
+
+
+
 
   return (
     <View style={styles.container}>
@@ -52,9 +96,14 @@ export default function HomeScreen() {
         <Image style={styles.logo}  source={require('../../assets/JobList.png')} />
       </View>
 
-      <View>
+
+      {/*___________________________TÍTULO E SUBTÍTULO_________________________*/}
+
+
+
+      <View style={styles.titulo}>
         <Text style={styles.eventName}>Tarefas semanais</Text>
-        <Text style={styles.eventDate}>Quarta, 23 de Outubro de 2024</Text>
+        <Text style={styles.eventDate}>Crie suas tarefas semanis</Text>
       </View>
       
 
@@ -74,7 +123,7 @@ export default function HomeScreen() {
           onChangeText={setNewParticipant} // Atualiza o estado ao digitar
         />
 
-        <TouchableOpacity style={styles.button} onPress={handParticipantAdd}>
+        <TouchableOpacity style={styles.button} onPress={combinedHandleAdd}>
           <Ionicons style={styles.iconadd} name="add" size={32} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -92,7 +141,7 @@ export default function HomeScreen() {
 
               <View style={styles.caixaCriadas}>
                   <Text style={styles.numeroCriadas}>
-                      0
+                     {taskCriadas}
                   </Text>
               </View>
         </View>
@@ -124,11 +173,15 @@ export default function HomeScreen() {
             <Participant
               key={item}
               name={item}
-              onRemove={() => handParticipantRemove(item)}
+              onRemove={() => {
+                handParticipantRemove(item); // Remove o participante específico da lista
+                handleRemoveTask(); // Decrementa o contador de tarefas
+              }}
+              
             />
           )}
           ListEmptyComponent={() => (
-            <Text style={styles.listEmptyText}>Adicione participantes do evento.</Text>
+            <Text style={styles.listEmptyText}>Adicione suas tarefas... </Text>
           )}
         />
       </View>

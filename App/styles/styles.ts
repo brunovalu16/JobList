@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     },
 
     eventName: {
-        color: '#31CF67',
+        color: '#4EA8DE',
         fontSize: 24,
         fontWeight: 'bold',
         marginTop: 16
@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
     form: {
         width: '100%',
         flexDirection: 'row',
-        top: '40%',
+        top: '50%',
         marginBottom: 15.
     },
 
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     },
 
     flatList: {
-        top: '25%',
+        top: '30%',
         flex: 1,
     },
 
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        top: '50%',
+        top: '60%',
         zIndex: 1,
         marginBottom: 10
       },
@@ -128,10 +128,12 @@ export const styles = StyleSheet.create({
       },
   
       numeroCriadas: {
-        color: "#fff"
+        color: "#fff",
       },
 
-      
+      titulo:{
+        top: '18%'
+      }
 
     
    
