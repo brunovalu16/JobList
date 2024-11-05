@@ -44,7 +44,7 @@ export default function HomeScreen() {
 
   // Função para remover participante
   function handParticipantRemove(name: string) {
-    Alert.alert('Remover', `Remover o participante ${name}?`, [
+    Alert.alert('Remover', `Remover a tarefa ${name}?`, [
       {
         text: 'Sim',
         onPress: () => {
